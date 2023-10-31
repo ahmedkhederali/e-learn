@@ -26,7 +26,7 @@ export async function PUT(
     if (!ownCourse) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
-
+// loop on list yo update postion of every chaper 
     for (let item of list) {
       await db.chapter.update({
         where: { id: item.id },

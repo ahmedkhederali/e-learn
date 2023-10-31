@@ -4,3 +4,19 @@ npm i @prisma/client
 npx prisma generate
 npx prisma db push
 npx prisma studio  
+
+
+https://www.npmjs.com/package/@hello-pangea/dnd 
+
+
+"use client "
+not mean skip server rendering compoletly but server sider renduring 
+at late client rernder compont on Client and this make a hydration error 
+
+hydration error:" occur when the server-rendered HTML differs from what React expects on the client side
+
+
+cn(
+    default values ,
+    condition 
+)

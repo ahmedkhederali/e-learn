@@ -91,8 +91,8 @@ export const AttachmentForm = ({
                     {attachment.name}
                   </p>
                   {deletingId === attachment.id && (
-                    <div>
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                    <div className="ml-auto">
+                      <Loader2 className="h-4 w-4 animate-spin " />
                     </div>
                   )}
                   {deletingId !== attachment.id && (

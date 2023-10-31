@@ -59,7 +59,7 @@ export const ChaptersForm = ({
       await axios.post(`/api/courses/${courseId}/chapters`, values);
       toast.success("Chapter created");
       toggleCreating();
-      router.refresh();
+      router.refresh(); //forcefully refresh the current page, triggering a re-render of the component.
     } catch {
       toast.error("Something went wrong");
     }
@@ -68,7 +68,6 @@ export const ChaptersForm = ({
   const onReorder = async (updateData: { id: string; position: number }[]) => {
     try {
       setIsUpdating(true);
-
       await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
         list: updateData
       });
@@ -81,8 +80,8 @@ export const ChaptersForm = ({
     }
   }
 
-  const onEdit = (id: string) => {
-    router.push(`/teacher/courses/${courseId}/chapters/${id}`);
+  const onEdit = (chapterId: string) => {
+    router.push(`/teacher/courses/${courseId}/chapters/${chapterId}`);
   }
 
   return (

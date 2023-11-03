@@ -20,3 +20,8 @@ cn(
     default values ,
     condition 
 )
+
+
+// for work with mux https://dashboard.mux.com/organizations/66lk3i/settings/access-tokens
+npm i @mux/mux-node
+npm i @mux/mux-player-react

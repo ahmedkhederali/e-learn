@@ -42,7 +42,10 @@ export async function DELETE(
       return new NextResponse("Not Found", { status: 404 });
     }
 
+    // if there is a video url delete video url
     if (chapter.videoUrl) {
+      // check if there is a video ==> if yes delete it from db and from Mux
+      //if user need to change video ==>delete video from MUX to aviod full space in mux 
       const existingMuxData = await db.muxData.findFirst({
         where: {
           chapterId: params.chapterId,
@@ -58,19 +61,21 @@ export async function DELETE(
         });
       }
     }
-
+// deleted chapter based on Chapter ID
     const deletedChapter = await db.chapter.delete({
       where: {
         id: params.chapterId
       }
     });
-
+// as i told there is must be in every course a chapter free so in this condition we check for 
+// if course have a free chapter or no if no must be convert course to unpublish course 
     const publishedChaptersInCourse = await db.chapter.findMany({
       where: {
         courseId: params.courseId,
         isPublished: true,
       }
     });
+// if course have a free chapter or no if no must be convert course to unpublish course 
 
     if (!publishedChaptersInCourse.length) {
       await db.course.update({
@@ -97,11 +102,11 @@ export async function PATCH(
   try {
     const { userId } = auth();
     const { isPublished, ...values } = await req.json();
-
+//check authentication
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
-
+// check for if current use is owner user or not
     const ownCourse = await db.course.findUnique({
       where: {
         id: params.courseId,
@@ -122,7 +127,7 @@ export async function PATCH(
         ...values,
       }
     });
-
+// check for updated video 
     if (values.videoUrl) {
       const existingMuxData = await db.muxData.findFirst({
         where: {

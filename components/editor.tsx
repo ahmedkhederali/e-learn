@@ -14,6 +14,7 @@ export const Editor = ({
   onChange,
   value,
 }: EditorProps) => {
+  // as i metion before use client not enough to skip server side rendering so we make below code to aviod hydration issuess 
   const ReactQuill = useMemo(() => dynamic(() => import("react-quill"), { ssr: false }), []);
 
   return (

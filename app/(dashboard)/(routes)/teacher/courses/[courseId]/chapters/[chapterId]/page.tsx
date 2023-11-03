@@ -49,7 +49,7 @@ const ChapterIdPage = async ({
 
   const completionText = `(${completedFields}/${totalFields})`;
 
-  const isComplete = requiredFields.every(Boolean);
+  const isComplete = requiredFields.every(Boolean);  // return true if i enter all filed in RequiredFields 
 
   return (
     <>
